@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * EJPA 的默认主配置类.
+ * Jpa-plus 的默认主配置类.
  *
  * @author lzy
  * @since v1.0.0

@@ -1,6 +1,5 @@
 package top.openyuan.jpa.specification;
 
-import org.hibernate.internal.util.StringHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.domain.Specification;
 import top.openyuan.jpa.config.FastConfig;
@@ -39,9 +38,9 @@ public final class SpecificationPlus {
             FastConfig.getSpecificationHandlerMap();
 
     /**
-     * 根据查询的实体 Bean 参数中的 EJPA 相关的注解来构造 {@link Specification} 实例.
+     * 根据查询的实体 Bean 参数中的 Jpa-plus 相关的注解来构造 {@link Specification} 实例.
      *
-     * @param beanParam 含有 EJPA 相关注解的 Java Bean 对象参数
+     * @param beanParam 含有 Jpa-plus 相关注解的 Java Bean 对象参数
      * @param <T> 范型 T
      * @return {@link Specification} 实例
      */
@@ -137,7 +136,7 @@ public final class SpecificationPlus {
     /**
      * 执行构建 {@link Predicate} 条件的方法.
      *
-     * @param beanParam 含有 EJPA 相关注解的 Java Bean 对象参数
+     * @param beanParam 含有 Jpa-plus 相关注解的 Java Bean 对象参数
      * @param field 对应的字段
      * @param criteriaBuilder {@link CriteriaBuilder} 实例
      * @param root {@link From} 实例
@@ -171,10 +170,10 @@ public final class SpecificationPlus {
                     : buildDefaultPredicate(criteriaBuilder, field, root, handler,
                     pair.getLeft(), pair.getRight(), annotation);
         } catch (IllegalAccessException e) {
-            throw new BuildSpecificationException("【EJPA 异常】与属性名相同名称的 match 匹配方法，不能访问，"
+            throw new BuildSpecificationException("【Jpa-plus 异常】与属性名相同名称的 match 匹配方法，不能访问，"
                     + "请设置方法的访问级别为【public】，方法返回值类型为【boolean】类型.");
         } catch (InvocationTargetException e) {
-            throw new BuildSpecificationException("【EJPA 异常】与属性名相同名称的 match 匹配方法，调用出错，"
+            throw new BuildSpecificationException("【Jpa-plus 异常】与属性名相同名称的 match 匹配方法，调用出错，"
                     + "请设置方法的访问级别为【public】，方法返回值类型为【boolean】类型，并检查其他引起调用失败的原因.");
         }
 
@@ -194,7 +193,7 @@ public final class SpecificationPlus {
      * 从字段的注解中获取到字段的属性名称和值，存入到 {@link Pair} 对象实例中.
      *
      * @param field 属性字段
-     * @param beanParam 含有 EJPA 相关注解的 Java Bean 对象参数
+     * @param beanParam 含有 Jpa-plus 相关注解的 Java Bean 对象参数
      * @param annotation 注解
      * @return 含有字段属性名称和值的 {@link Pair} 对象
      */
@@ -207,10 +206,10 @@ public final class SpecificationPlus {
         // 获取到真正的数据库持久类 POJO 实体的属性值 fieldName 和该属性的值 value.
         try {
             String fieldName = (String) annotation.getClass().getMethod("value").invoke(annotation);
-            fieldName = StringHelper.isBlank(fieldName) ? field.getName() : fieldName;
+            fieldName = StringUtils.isBlank(fieldName) ? field.getName() : fieldName;
             return Pair.of(fieldName, descriptor.getReadMethod().invoke(beanParam));
         } catch (ReflectiveOperationException e) {
-            throw new BuildSpecificationException("【EJPA 异常】构建【" + annotation.getClass().getName()
+            throw new BuildSpecificationException("【Jpa-plus 异常】构建【" + annotation.getClass().getName()
                     + "】注解的条件时，反射调用获取对应的属性字段值异常。", e);
         }
     }

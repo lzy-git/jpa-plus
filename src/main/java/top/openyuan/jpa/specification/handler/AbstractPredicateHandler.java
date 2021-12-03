@@ -177,7 +177,7 @@ public abstract class AbstractPredicateHandler implements PredicateHandler {
      */
     private void isValueComparable(Object value) {
         if (!(value instanceof Comparable)) {
-            throw new BuildSpecificationException("【EJPA 异常】要比较的 value 值【" + value + "】不是可比较类型的，"
+            throw new BuildSpecificationException("【Jpa-plus 异常】要比较的 value 值【" + value + "】不是可比较类型的，"
                     + "该值的类型必须实现了 java.lang.Comparable 接口才能正常参与比较，才能用于大于、大于等于、小于、小于等于之类的比较场景.");
         }
     }
@@ -255,7 +255,7 @@ public abstract class AbstractPredicateHandler implements PredicateHandler {
             return (boolean) this.getAnnotation().getMethod("allowNull").invoke(annotation);
         } catch (IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-            logger.error("【EJPA 错误提示】获取【@In】、【@OrIn】、【@NotIn】、【@OrNotIn】相关注解中的【allowNull】的值失败，将默认返回 false 的值.", e);
+            logger.error("【Jpa-plus 错误提示】获取【@In】、【@OrIn】、【@NotIn】、【@OrNotIn】相关注解中的【allowNull】的值失败，将默认返回 false 的值.", e);
             return false;
         }
     }
@@ -437,7 +437,7 @@ public abstract class AbstractPredicateHandler implements PredicateHandler {
             BetweenValue<?> bv = (BetweenValue<?>) value;
             return this.buildBetweenPredicate(criteriaBuilder, from, fieldName, bv.getStart(), bv.getEnd());
         } else {
-            throw new BuildSpecificationException("【EJPA 异常】构建【@Between】注解区间查询时，参数值类型不是数组或 "
+            throw new BuildSpecificationException("【Jpa-plus 异常】构建【@Between】注解区间查询时，参数值类型不是数组或 "
                     + "List 类型的集合，无法获取到前后的区间值。");
         }
     }
@@ -456,7 +456,7 @@ public abstract class AbstractPredicateHandler implements PredicateHandler {
             this.isValueComparable(endValue);
             return criteriaBuilder.lessThanOrEqualTo(from.get(fieldName), (Comparable) endValue);
         } else {
-            throw new BuildSpecificationException("【EJPA 异常】构建【@Between】注解区间查询时，开始和结束的区间值均为【null】"
+            throw new BuildSpecificationException("【Jpa-plus 异常】构建【@Between】注解区间查询时，开始和结束的区间值均为【null】"
                     + "，无法构造区间或大于等于、小于等于的 Predicate条件。");
         }
     }

@@ -21,7 +21,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 
 /**
- * 用于开启（激活）EJPA 的注解.
+ * 用于开启（激活）Jpa-plus 的注解.
  *
  * @author liangzhengyuan on 2021/9/15
  * @since v1.0.0
