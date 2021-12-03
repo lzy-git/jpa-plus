@@ -1,7 +1,7 @@
 package top.openyuan.jpa.repository;
 
-import top.openyuan.jpa.constant.JpaConfigConstant;
-import top.openyuan.jpa.util.StringUtils;
+import top.openyuan.jpa.common.constant.JpaConfigConstant;
+import top.openyuan.jpa.common.util.StringUtils;
 import org.hibernate.Session;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
@@ -23,7 +23,7 @@ import java.util.Optional;
 /**
  * 继承了 {@link SimpleJpaRepository} 类，实现了 {@link JpaRepositoryExt} 接口的 Fast JPA Repository 基础实现类.
  *
- * @author blinkfox on 2020-12-04.
+ * @author lzy on 2020-12-04.
  * @since v2.4.0
  */
 @Repository

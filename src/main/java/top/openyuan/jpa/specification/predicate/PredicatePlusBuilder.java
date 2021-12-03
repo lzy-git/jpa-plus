@@ -13,12 +13,12 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Fenix 中用来动态链式构造 {@link Predicate} 实例的构造器.
+ * Jpa-plus 中用来动态链式构造 {@link Predicate} 实例的构造器.
  *
  * @author lzy on 2021-11-15
  * @since v1.0.0
  */
-public class FastPredicateBuilder {
+public class PredicatePlusBuilder {
 
     /**
      * 动态构建 {@link Predicate} 所需的 {@link CriteriaBuilder} 实例.
@@ -47,7 +47,7 @@ public class FastPredicateBuilder {
      * @param criteriaQuery {@code Criteria} 查询器
      * @param criteriaBuilder {@link CriteriaBuilder} 实例
      */
-    public FastPredicateBuilder(From<?, ?> from, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+    public PredicatePlusBuilder(From<?, ?> from, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         this.from = from;
         this.criteriaBuilder = criteriaBuilder;
         this.criteriaQuery = criteriaQuery;
@@ -68,9 +68,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andEquals(String fieldName, Object value) {
+    public PredicatePlusBuilder andEquals(String fieldName, Object value) {
         this.predicates.add(new EqualsPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -81,9 +81,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andEquals(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andEquals(String fieldName, Object value, boolean match) {
         return match ? this.andEquals(fieldName, value) : this;
     }
 
@@ -92,9 +92,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orEquals(String fieldName, Object value) {
+    public PredicatePlusBuilder orEquals(String fieldName, Object value) {
         this.predicates.add(new OrEqualsPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -105,9 +105,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orEquals(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orEquals(String fieldName, Object value, boolean match) {
         return match ? this.orEquals(fieldName, value) : this;
     }
 
@@ -116,9 +116,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotEquals(String fieldName, Object value) {
+    public PredicatePlusBuilder andNotEquals(String fieldName, Object value) {
         this.predicates.add(new NotEqualsPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -129,9 +129,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotEquals(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andNotEquals(String fieldName, Object value, boolean match) {
         return match ? this.andNotEquals(fieldName, value) : this;
     }
 
@@ -140,9 +140,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotEquals(String fieldName, Object value) {
+    public PredicatePlusBuilder orNotEquals(String fieldName, Object value) {
         this.predicates.add(new OrNotEqualsPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -153,9 +153,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotEquals(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orNotEquals(String fieldName, Object value, boolean match) {
         return match ? this.orNotEquals(fieldName, value) : this;
     }
 
@@ -164,9 +164,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andGreaterThan(String fieldName, Object value) {
+    public PredicatePlusBuilder andGreaterThan(String fieldName, Object value) {
         this.predicates.add(new GreaterThanPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -178,9 +178,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andGreaterThan(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andGreaterThan(String fieldName, Object value, boolean match) {
         return match ? this.andGreaterThan(fieldName, value) : this;
     }
 
@@ -189,9 +189,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orGreaterThan(String fieldName, Object value) {
+    public PredicatePlusBuilder orGreaterThan(String fieldName, Object value) {
         this.predicates.add(new OrGreaterThanPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -203,9 +203,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orGreaterThan(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orGreaterThan(String fieldName, Object value, boolean match) {
         return match ? this.orGreaterThan(fieldName, value) : this;
     }
 
@@ -214,9 +214,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andGreaterThanEqual(String fieldName, Object value) {
+    public PredicatePlusBuilder andGreaterThanEqual(String fieldName, Object value) {
         this.predicates.add(new GreaterThanEqualPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -228,9 +228,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andGreaterThanEqual(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andGreaterThanEqual(String fieldName, Object value, boolean match) {
         return match ? this.andGreaterThanEqual(fieldName, value) : this;
     }
 
@@ -239,9 +239,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orGreaterThanEqual(String fieldName, Object value) {
+    public PredicatePlusBuilder orGreaterThanEqual(String fieldName, Object value) {
         this.predicates.add(new OrGreaterThanEqualPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -253,9 +253,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orGreaterThanEqual(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orGreaterThanEqual(String fieldName, Object value, boolean match) {
         return match ? this.orGreaterThanEqual(fieldName, value) : this;
     }
 
@@ -264,9 +264,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andLessThan(String fieldName, Object value) {
+    public PredicatePlusBuilder andLessThan(String fieldName, Object value) {
         this.predicates.add(new LessThanPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -277,9 +277,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andLessThan(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andLessThan(String fieldName, Object value, boolean match) {
         return match ? this.andLessThan(fieldName, value) : this;
     }
 
@@ -288,9 +288,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orLessThan(String fieldName, Object value) {
+    public PredicatePlusBuilder orLessThan(String fieldName, Object value) {
         this.predicates.add(new OrLessThanPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -302,9 +302,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orLessThan(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orLessThan(String fieldName, Object value, boolean match) {
         return match ? this.orLessThan(fieldName, value) : this;
     }
 
@@ -313,9 +313,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andLessThanEqual(String fieldName, Object value) {
+    public PredicatePlusBuilder andLessThanEqual(String fieldName, Object value) {
         this.predicates.add(new LessThanEqualPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -327,9 +327,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andLessThanEqual(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andLessThanEqual(String fieldName, Object value, boolean match) {
         return match ? this.andLessThanEqual(fieldName, value) : this;
     }
 
@@ -338,9 +338,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orLessThanEqual(String fieldName, Object value) {
+    public PredicatePlusBuilder orLessThanEqual(String fieldName, Object value) {
         this.predicates.add(new OrLessThanEqualPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -352,9 +352,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orLessThanEqual(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orLessThanEqual(String fieldName, Object value, boolean match) {
         return match ? this.orLessThanEqual(fieldName, value) : this;
     }
 
@@ -365,9 +365,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param startValue 区间开始值
      * @param endValue 区间结束值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andBetween(String fieldName, Object startValue, Object endValue) {
+    public PredicatePlusBuilder andBetween(String fieldName, Object startValue, Object endValue) {
         this.predicates.add(new BetweenPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, new Object[] {startValue, endValue}));
         return this;
@@ -381,9 +381,9 @@ public class FastPredicateBuilder {
      * @param startValue 区间开始值
      * @param endValue 区间结束值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andBetween(String fieldName, Object startValue, Object endValue, boolean match) {
+    public PredicatePlusBuilder andBetween(String fieldName, Object startValue, Object endValue, boolean match) {
         return match ? this.andBetween(fieldName, startValue, endValue) : this;
     }
 
@@ -394,9 +394,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param startValue 区间开始值
      * @param endValue 区间结束值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orBetween(String fieldName, Object startValue, Object endValue) {
+    public PredicatePlusBuilder orBetween(String fieldName, Object startValue, Object endValue) {
         this.predicates.add(new OrBetweenPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, new Object[] {startValue, endValue}));
         return this;
@@ -410,9 +410,9 @@ public class FastPredicateBuilder {
      * @param startValue 区间开始值
      * @param endValue 区间结束值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orBetween(String fieldName, Object startValue, Object endValue, boolean match) {
+    public PredicatePlusBuilder orBetween(String fieldName, Object startValue, Object endValue, boolean match) {
         return match ? this.orBetween(fieldName, startValue, endValue) : this;
     }
 
@@ -423,9 +423,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param startValue 区间开始值
      * @param endValue 区间结束值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotBetween(String fieldName, Object startValue, Object endValue) {
+    public PredicatePlusBuilder andNotBetween(String fieldName, Object startValue, Object endValue) {
         this.predicates.add(new NotBetweenPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, new Object[] {startValue, endValue}));
         return this;
@@ -439,9 +439,9 @@ public class FastPredicateBuilder {
      * @param startValue 区间开始值
      * @param endValue 区间结束值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotBetween(String fieldName, Object startValue, Object endValue, boolean match) {
+    public PredicatePlusBuilder andNotBetween(String fieldName, Object startValue, Object endValue, boolean match) {
         return match ? this.andNotBetween(fieldName, startValue, endValue) : this;
     }
 
@@ -452,9 +452,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param startValue 区间开始值
      * @param endValue 区间结束值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotBetween(String fieldName, Object startValue, Object endValue) {
+    public PredicatePlusBuilder orNotBetween(String fieldName, Object startValue, Object endValue) {
         this.predicates.add(new OrNotBetweenPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, new Object[] {startValue, endValue}));
         return this;
@@ -468,9 +468,9 @@ public class FastPredicateBuilder {
      * @param startValue 区间开始值
      * @param endValue 区间结束值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotBetween(String fieldName, Object startValue, Object endValue, boolean match) {
+    public PredicatePlusBuilder orNotBetween(String fieldName, Object startValue, Object endValue, boolean match) {
         return match ? this.orNotBetween(fieldName, startValue, endValue) : this;
     }
 
@@ -479,9 +479,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andLike(String fieldName, Object value) {
+    public PredicatePlusBuilder andLike(String fieldName, Object value) {
         this.predicates.add(new LikePredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -492,9 +492,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andLike(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andLike(String fieldName, Object value, boolean match) {
         return match ? this.andLike(fieldName, value) : this;
     }
 
@@ -503,9 +503,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orLike(String fieldName, Object value) {
+    public PredicatePlusBuilder orLike(String fieldName, Object value) {
         this.predicates.add(new OrLikePredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -516,9 +516,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orLike(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orLike(String fieldName, Object value, boolean match) {
         return match ? this.orLike(fieldName, value) : this;
     }
 
@@ -527,9 +527,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotLike(String fieldName, Object value) {
+    public PredicatePlusBuilder andNotLike(String fieldName, Object value) {
         this.predicates.add(new NotLikePredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -540,9 +540,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotLike(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andNotLike(String fieldName, Object value, boolean match) {
         return match ? this.andNotLike(fieldName, value) : this;
     }
 
@@ -551,9 +551,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotLike(String fieldName, Object value) {
+    public PredicatePlusBuilder orNotLike(String fieldName, Object value) {
         this.predicates.add(new OrNotLikePredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -564,9 +564,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotLike(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orNotLike(String fieldName, Object value, boolean match) {
         return match ? this.orNotLike(fieldName, value) : this;
     }
 
@@ -575,9 +575,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andStartsWith(String fieldName, Object value) {
+    public PredicatePlusBuilder andStartsWith(String fieldName, Object value) {
         this.predicates.add(new StartsWithPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -588,9 +588,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andStartsWith(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andStartsWith(String fieldName, Object value, boolean match) {
         return match ? this.andStartsWith(fieldName, value) : this;
     }
 
@@ -599,9 +599,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orStartsWith(String fieldName, Object value) {
+    public PredicatePlusBuilder orStartsWith(String fieldName, Object value) {
         this.predicates.add(new OrStartsWithPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -613,9 +613,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orStartsWith(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orStartsWith(String fieldName, Object value, boolean match) {
         return match ? this.orStartsWith(fieldName, value) : this;
     }
 
@@ -624,9 +624,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotStartsWith(String fieldName, Object value) {
+    public PredicatePlusBuilder andNotStartsWith(String fieldName, Object value) {
         this.predicates.add(new NotStartsWithPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -638,9 +638,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotStartsWith(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andNotStartsWith(String fieldName, Object value, boolean match) {
         return match ? this.andNotStartsWith(fieldName, value) : this;
     }
 
@@ -649,9 +649,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotStartsWith(String fieldName, Object value) {
+    public PredicatePlusBuilder orNotStartsWith(String fieldName, Object value) {
         this.predicates.add(new OrNotStartsWithPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -663,9 +663,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotStartsWith(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orNotStartsWith(String fieldName, Object value, boolean match) {
         return match ? this.orNotStartsWith(fieldName, value) : this;
     }
 
@@ -674,9 +674,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andEndsWith(String fieldName, Object value) {
+    public PredicatePlusBuilder andEndsWith(String fieldName, Object value) {
         this.predicates.add(new EndsWithPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -687,9 +687,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andEndsWith(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andEndsWith(String fieldName, Object value, boolean match) {
         return match ? this.andEndsWith(fieldName, value) : this;
     }
 
@@ -698,9 +698,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orEndsWith(String fieldName, Object value) {
+    public PredicatePlusBuilder orEndsWith(String fieldName, Object value) {
         this.predicates.add(new OrEndsWithPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -712,9 +712,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orEndsWith(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orEndsWith(String fieldName, Object value, boolean match) {
         return match ? this.orEndsWith(fieldName, value) : this;
     }
 
@@ -723,9 +723,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotEndsWith(String fieldName, Object value) {
+    public PredicatePlusBuilder andNotEndsWith(String fieldName, Object value) {
         this.predicates.add(new NotEndsWithPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -736,9 +736,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotEndsWith(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder andNotEndsWith(String fieldName, Object value, boolean match) {
         return match ? this.andNotEndsWith(fieldName, value) : this;
     }
 
@@ -747,9 +747,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 值
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotEndsWith(String fieldName, Object value) {
+    public PredicatePlusBuilder orNotEndsWith(String fieldName, Object value) {
         this.predicates.add(new OrNotEndsWithPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
@@ -761,9 +761,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 值
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotEndsWith(String fieldName, Object value, boolean match) {
+    public PredicatePlusBuilder orNotEndsWith(String fieldName, Object value, boolean match) {
         return match ? this.orNotEndsWith(fieldName, value) : this;
     }
 
@@ -772,9 +772,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param pattern 匹配的模式字符串
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andLikePattern(String fieldName, String pattern) {
+    public PredicatePlusBuilder andLikePattern(String fieldName, String pattern) {
         this.predicates.add(new LikePatternPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, pattern));
         return this;
@@ -786,9 +786,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param pattern 匹配的模式字符串
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andLikePattern(String fieldName, String pattern, boolean match) {
+    public PredicatePlusBuilder andLikePattern(String fieldName, String pattern, boolean match) {
         return match ? this.andLikePattern(fieldName, pattern) : this;
     }
 
@@ -797,9 +797,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param pattern 匹配的模式字符串
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orLikePattern(String fieldName, String pattern) {
+    public PredicatePlusBuilder orLikePattern(String fieldName, String pattern) {
         this.predicates.add(new OrLikePatternPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, pattern));
         return this;
@@ -811,9 +811,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param pattern 匹配的模式字符串
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orLikePattern(String fieldName, String pattern, boolean match) {
+    public PredicatePlusBuilder orLikePattern(String fieldName, String pattern, boolean match) {
         return match ? this.orLikePattern(fieldName, pattern) : this;
     }
 
@@ -822,9 +822,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param pattern 匹配的模式字符串
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotLikePattern(String fieldName, String pattern) {
+    public PredicatePlusBuilder andNotLikePattern(String fieldName, String pattern) {
         this.predicates.add(new NotLikePatternPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, pattern));
         return this;
@@ -836,9 +836,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param pattern 匹配的模式字符串
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotLikePattern(String fieldName, String pattern, boolean match) {
+    public PredicatePlusBuilder andNotLikePattern(String fieldName, String pattern, boolean match) {
         return match ? this.andNotLikePattern(fieldName, pattern) : this;
     }
 
@@ -847,9 +847,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param pattern 匹配的模式字符串
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotLikePattern(String fieldName, String pattern) {
+    public PredicatePlusBuilder orNotLikePattern(String fieldName, String pattern) {
         this.predicates.add(new OrNotLikePatternPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, pattern));
         return this;
@@ -861,9 +861,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param pattern 匹配的模式字符串
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotLikePattern(String fieldName, String pattern, boolean match) {
+    public PredicatePlusBuilder orNotLikePattern(String fieldName, String pattern, boolean match) {
         return match ? this.orNotLikePattern(fieldName, pattern) : this;
     }
 
@@ -872,9 +872,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 集合
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andIn(String fieldName, Collection<?> value) {
+    public PredicatePlusBuilder andIn(String fieldName, Collection<?> value) {
         this.predicates.add(new InPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -885,9 +885,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 集合
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andIn(String fieldName, Collection<?> value, boolean match) {
+    public PredicatePlusBuilder andIn(String fieldName, Collection<?> value, boolean match) {
         return match ? this.andIn(fieldName, value) : this;
     }
 
@@ -896,9 +896,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 数组
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andIn(String fieldName, Object[] value) {
+    public PredicatePlusBuilder andIn(String fieldName, Object[] value) {
         this.predicates.add(new InPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -909,9 +909,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 数组
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andIn(String fieldName, Object[] value, boolean match) {
+    public PredicatePlusBuilder andIn(String fieldName, Object[] value, boolean match) {
         return match ? this.andIn(fieldName, value) : this;
     }
 
@@ -920,9 +920,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 集合
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orIn(String fieldName, Collection<?> value) {
+    public PredicatePlusBuilder orIn(String fieldName, Collection<?> value) {
         this.predicates.add(new OrInPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -933,9 +933,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 集合
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orIn(String fieldName, Collection<?> value, boolean match) {
+    public PredicatePlusBuilder orIn(String fieldName, Collection<?> value, boolean match) {
         return match ? this.orIn(fieldName, value) : this;
     }
 
@@ -944,9 +944,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 数组
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orIn(String fieldName, Object[] value) {
+    public PredicatePlusBuilder orIn(String fieldName, Object[] value) {
         this.predicates.add(new OrInPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -957,9 +957,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 数组
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orIn(String fieldName, Object[] value, boolean match) {
+    public PredicatePlusBuilder orIn(String fieldName, Object[] value, boolean match) {
         return match ? this.orIn(fieldName, value) : this;
     }
 
@@ -968,9 +968,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 集合
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotIn(String fieldName, Collection<?> value) {
+    public PredicatePlusBuilder andNotIn(String fieldName, Collection<?> value) {
         this.predicates.add(new NotInPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -981,9 +981,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 集合
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotIn(String fieldName, Collection<?> value, boolean match) {
+    public PredicatePlusBuilder andNotIn(String fieldName, Collection<?> value, boolean match) {
         return match ? this.andNotIn(fieldName, value) : this;
     }
 
@@ -992,9 +992,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 数组
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotIn(String fieldName, Object[] value) {
+    public PredicatePlusBuilder andNotIn(String fieldName, Object[] value) {
         this.predicates.add(new NotInPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -1005,9 +1005,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 数组
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andNotIn(String fieldName, Object[] value, boolean match) {
+    public PredicatePlusBuilder andNotIn(String fieldName, Object[] value, boolean match) {
         return match ? this.andNotIn(fieldName, value) : this;
     }
 
@@ -1016,9 +1016,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 集合
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotIn(String fieldName, Collection<?> value) {
+    public PredicatePlusBuilder orNotIn(String fieldName, Collection<?> value) {
         this.predicates.add(new OrNotInPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -1029,9 +1029,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 集合
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotIn(String fieldName, Collection<?> value, boolean match) {
+    public PredicatePlusBuilder orNotIn(String fieldName, Collection<?> value, boolean match) {
         return match ? this.orNotIn(fieldName, value) : this;
     }
 
@@ -1040,9 +1040,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param value 数组
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotIn(String fieldName, Object[] value) {
+    public PredicatePlusBuilder orNotIn(String fieldName, Object[] value) {
         this.predicates.add(new OrNotInPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -1053,9 +1053,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 数组
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orNotIn(String fieldName, Object[] value, boolean match) {
+    public PredicatePlusBuilder orNotIn(String fieldName, Object[] value, boolean match) {
         return match ? this.orNotIn(fieldName, value) : this;
     }
 
@@ -1063,9 +1063,9 @@ public class FastPredicateBuilder {
      * 生成 {@code IS NULL} 是空的 {@link Predicate} 条件.
      *
      * @param fieldName 实体属性或数据库字段
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andIsNull(String fieldName) {
+    public PredicatePlusBuilder andIsNull(String fieldName) {
         this.predicates.add(new IsNullPredicateHandler().buildPredicate(criteriaBuilder, from, fieldName, fieldName));
         return this;
     }
@@ -1075,9 +1075,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andIsNull(String fieldName, boolean match) {
+    public PredicatePlusBuilder andIsNull(String fieldName, boolean match) {
         return match ? this.andIsNull(fieldName) : this;
     }
 
@@ -1085,9 +1085,9 @@ public class FastPredicateBuilder {
      * 生成或语句 {@code OR field IS NULL} 是空的 {@link Predicate} 条件.
      *
      * @param fieldName 实体属性或数据库字段
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orIsNull(String fieldName) {
+    public PredicatePlusBuilder orIsNull(String fieldName) {
         this.predicates.add(new OrIsNullPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, fieldName));
         return this;
@@ -1098,9 +1098,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orIsNull(String fieldName, boolean match) {
+    public PredicatePlusBuilder orIsNull(String fieldName, boolean match) {
         return match ? this.orIsNull(fieldName) : this;
     }
 
@@ -1108,9 +1108,9 @@ public class FastPredicateBuilder {
      * 生成 {@code AND field IS NOT NULL} 不是空的 {@link Predicate} 条件.
      *
      * @param fieldName 实体属性或数据库字段
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andIsNotNull(String fieldName) {
+    public PredicatePlusBuilder andIsNotNull(String fieldName) {
         this.predicates.add(new IsNotNullPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, fieldName));
         return this;
@@ -1121,9 +1121,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder andIsNotNull(String fieldName, boolean match) {
+    public PredicatePlusBuilder andIsNotNull(String fieldName, boolean match) {
         return match ? this.andIsNotNull(fieldName) : this;
     }
 
@@ -1131,9 +1131,9 @@ public class FastPredicateBuilder {
      * 生成或语句 {@code OR field IS NOT NULL} 不是空的 {@link Predicate} 条件.
      *
      * @param fieldName 实体属性或数据库字段
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orIsNotNull(String fieldName) {
+    public PredicatePlusBuilder orIsNotNull(String fieldName) {
         this.predicates.add(new OrIsNotNullPredicateHandler()
                 .buildPredicate(criteriaBuilder, from, fieldName, fieldName));
         return this;
@@ -1144,9 +1144,9 @@ public class FastPredicateBuilder {
      *
      * @param fieldName 实体属性或数据库字段
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return {@link FastPredicateBuilder} 实例
+     * @return {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder orIsNotNull(String fieldName, boolean match) {
+    public PredicatePlusBuilder orIsNotNull(String fieldName, boolean match) {
         return match ? this.orIsNotNull(fieldName) : this;
     }
 
@@ -1156,9 +1156,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 字段条件对应的值
      * @param handler {@link AbstractPredicateHandler} 的子类实例
-     * @return 当前的 {@link FastPredicateBuilder} 实例
+     * @return 当前的 {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder doAny(String fieldName, Object value, AbstractPredicateHandler handler) {
+    public PredicatePlusBuilder doAny(String fieldName, Object value, AbstractPredicateHandler handler) {
         this.predicates.add(handler.buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -1170,9 +1170,9 @@ public class FastPredicateBuilder {
      * @param value 字段条件对应的值
      * @param handler {@link AbstractPredicateHandler} 的子类实例
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return 当前的 {@link FastPredicateBuilder} 实例
+     * @return 当前的 {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder doAny(
+    public PredicatePlusBuilder doAny(
             String fieldName, Object value, AbstractPredicateHandler handler, boolean match) {
         return match ? this.doAny(fieldName, value, handler) : this;
     }
@@ -1183,9 +1183,9 @@ public class FastPredicateBuilder {
      * @param fieldName 实体属性或数据库字段
      * @param value 字段条件对应的值
      * @param handler {@link PredicateHandler} 的实现类实例，可使用 {@code Lambda} 表达式
-     * @return 当前的 {@link FastPredicateBuilder} 实例
+     * @return 当前的 {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder doAny(String fieldName, Object value, PredicateHandler handler) {
+    public PredicatePlusBuilder doAny(String fieldName, Object value, PredicateHandler handler) {
         this.predicates.add(handler.buildPredicate(criteriaBuilder, from, fieldName, value));
         return this;
     }
@@ -1197,9 +1197,9 @@ public class FastPredicateBuilder {
      * @param value 字段条件对应的值
      * @param handler {@link PredicateHandler} 的实现类实例，可使用 {@code Lambda} 表达式
      * @param match 是否匹配生成此 {@link Predicate} 条件
-     * @return 当前的 {@link FastPredicateBuilder} 实例
+     * @return 当前的 {@link PredicatePlusBuilder} 实例
      */
-    public FastPredicateBuilder doAny(String fieldName, Object value, PredicateHandler handler, boolean match) {
+    public PredicatePlusBuilder doAny(String fieldName, Object value, PredicateHandler handler, boolean match) {
         return match ? this.doAny(fieldName, value, handler) : this;
     }
 

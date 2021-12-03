@@ -7,12 +7,12 @@ import top.openyuan.jpa.config.FastConfig;
 import top.openyuan.jpa.exception.BuildSpecificationException;
 import top.openyuan.jpa.specification.handler.AbstractPredicateHandler;
 import top.openyuan.jpa.specification.handler.bean.Pair;
-import top.openyuan.jpa.specification.predicate.BooleanStaticPredicate;
-import top.openyuan.jpa.specification.predicate.FastPredicate;
-import top.openyuan.jpa.specification.predicate.FastPredicateBuilder;
-import top.openyuan.jpa.util.CollectionUtils;
-import top.openyuan.jpa.util.FieldUtils;
-import top.openyuan.jpa.util.StringUtils;
+import top.openyuan.jpa.specification.predicate.AbstractSimplePredicateExt;
+import top.openyuan.jpa.specification.predicate.PredicatePlus;
+import top.openyuan.jpa.specification.predicate.PredicatePlusBuilder;
+import top.openyuan.jpa.common.util.CollectionUtils;
+import top.openyuan.jpa.common.util.FieldUtils;
+import top.openyuan.jpa.common.util.StringUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.From;
@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  * @author lzy on 2021-11-15
  * @since v1.0.0
  */
-public final class FastSpecification {
+public final class SpecificationPlus {
 
     private static final Map<Class<?>, AbstractPredicateHandler> specificationHandlerMap =
             FastConfig.getSpecificationHandlerMap();
@@ -67,13 +67,13 @@ public final class FastSpecification {
     /**
      * 根据查询的条件列表中构造 {@link Specification} 实例.
      *
-     * @param fastPredicate 动态 {@link Predicate} 的构造器接口
+     * @param predicatePlus 动态 {@link Predicate} 的构造器接口
      * @param <T> 范型 T
      * @return {@link Specification} 实例
      */
-    public static <T> Specification<T> of(FastPredicate fastPredicate) {
+    public static <T> Specification<T> of(PredicatePlus predicatePlus) {
         return (root, query, builder) -> mergePredicates(builder,
-                fastPredicate.toPredicate(new FastPredicateBuilder(root, query, builder))
+                predicatePlus.toPredicate(new PredicatePlusBuilder(root, query, builder))
                         .stream()
                         .collect(Collectors.groupingBy(Predicate::getOperator)));
     }
@@ -256,7 +256,7 @@ public final class FastSpecification {
      * @return 布尔值
      */
     private static boolean isValid(Predicate predicate) {
-        return !(predicate instanceof BooleanStaticPredicate) || validateBooleanPredicate(predicate);
+        return !(predicate instanceof AbstractSimplePredicateExt) || validateBooleanPredicate(predicate);
     }
 
     /**
@@ -266,7 +266,7 @@ public final class FastSpecification {
      * @return 布尔值
      */
     private static boolean validateBooleanPredicate(Predicate predicate) {
-        BooleanStaticPredicate boolPredicate = (BooleanStaticPredicate) predicate;
+        AbstractSimplePredicateExt boolPredicate = (AbstractSimplePredicateExt) predicate;
         return !((boolPredicate.getAssertedValue() && predicate.getOperator() == Predicate.BooleanOperator.AND)
                 || (!boolPredicate.getAssertedValue() && predicate.getOperator() == Predicate.BooleanOperator.OR));
     }

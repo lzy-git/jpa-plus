@@ -13,13 +13,13 @@ import javax.persistence.EntityManager;
  * @author lzy
  * @since v1.0.0
  */
-public class JpaRepositoryFactoryExt extends JpaRepositoryFactory {
+public class JpaRepositoryExtFactory extends JpaRepositoryFactory {
     /**
      * 创建 {@link JpaRepositoryFactory} 实例.
      *
      * @param entityManager must not be {@literal null}
      */
-    public JpaRepositoryFactoryExt(EntityManager entityManager) { super(entityManager); }
+    public JpaRepositoryExtFactory(EntityManager entityManager) { super(entityManager); }
 
     /**
      * 获取 Repository 的实现基类，这里使用 FastJpa 中的 {@link SimpleJpaRepositoryExt} 类.

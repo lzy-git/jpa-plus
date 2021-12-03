@@ -1,4 +1,4 @@
-package top.openyuan.jpa.util;
+package top.openyuan.jpa.common.util;
 
 import org.springframework.util.Assert;
 

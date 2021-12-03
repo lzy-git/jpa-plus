@@ -1,7 +1,7 @@
 package top.openyuan.jpa.specification.handler.impl;
 import top.openyuan.jpa.specification.annotation.LikeIn;
 import top.openyuan.jpa.specification.handler.AbstractPredicateHandler;
-import top.openyuan.jpa.util.CollectionUtils;
+import top.openyuan.jpa.common.util.CollectionUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.From;

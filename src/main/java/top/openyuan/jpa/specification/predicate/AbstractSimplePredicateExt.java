@@ -9,7 +9,7 @@ import org.hibernate.query.criteria.internal.predicate.AbstractSimplePredicate;
 import org.hibernate.query.criteria.internal.predicate.BooleanStaticAssertionPredicate;
 
 /**
- * {@link BooleanStaticAssertionPredicate} 的装饰类，主要用来返回永真和永假条件.
+ * {@link AbstractSimplePredicateExt} 的装饰类，主要用来返回永真和永假条件.
  *
  * <p>本库会根据该类的属性去除一些不必要的永真永假条件该类主要用于处理 {@code @In} 条件中传入了大小为 {@code 0} 的集合。
  * 建议使用者在调用框架之前对空集合进行过滤.</p>
@@ -17,7 +17,7 @@ import org.hibernate.query.criteria.internal.predicate.BooleanStaticAssertionPre
  * @author lzy on 2021-11-15
  * @since v1.0.0
  */
-public class BooleanStaticPredicate extends AbstractSimplePredicate {
+public class AbstractSimplePredicateExt extends AbstractSimplePredicate {
 
     private static final long serialVersionUID = 3479513712737513954L;
 
@@ -35,7 +35,7 @@ public class BooleanStaticPredicate extends AbstractSimplePredicate {
      * @param assertedValue 布尔值
      * @param operator {@link BooleanOperator} 实例
      */
-    public BooleanStaticPredicate(
+    public AbstractSimplePredicateExt(
             CriteriaBuilderImpl criteriaBuilder, Boolean assertedValue, BooleanOperator operator) {
         super(criteriaBuilder);
         this.predicate = new BooleanStaticAssertionPredicate(criteriaBuilder, assertedValue);

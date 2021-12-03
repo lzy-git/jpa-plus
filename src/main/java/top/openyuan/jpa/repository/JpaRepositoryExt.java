@@ -1,6 +1,6 @@
 package top.openyuan.jpa.repository;
 
-import top.openyuan.jpa.constant.JpaConfigConstant;
+import top.openyuan.jpa.common.constant.JpaConfigConstant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 

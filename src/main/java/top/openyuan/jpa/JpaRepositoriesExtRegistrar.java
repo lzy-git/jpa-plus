@@ -12,7 +12,7 @@ import java.lang.annotation.Annotation;
  * @author lzy on 2021/09/22
  * @since v1.0.0
  */
-public class JpaRepositoriesRegistrarExt extends RepositoryBeanDefinitionRegistrarSupport {
+public class JpaRepositoriesExtRegistrar extends RepositoryBeanDefinitionRegistrarSupport {
 
     @Override
     protected Class<? extends Annotation> getAnnotation() {

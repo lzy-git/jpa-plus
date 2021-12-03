@@ -11,7 +11,7 @@ import java.lang.annotation.Annotation;
 /**
  * 构建“按前缀模糊匹配”({@code AND field LIKE 'xx%'})场景的 {@link Predicate} 处理器.
  *
- * @author blinkfox on 2020-01-25
+ * @author lzy on 2020-01-25
  * @since v1.0.0
  */
 public class StartsWithPredicateHandler extends AbstractPredicateHandler {

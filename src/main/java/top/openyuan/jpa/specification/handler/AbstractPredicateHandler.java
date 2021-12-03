@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.openyuan.jpa.exception.BuildSpecificationException;
 import top.openyuan.jpa.specification.handler.bean.BetweenValue;
-import top.openyuan.jpa.specification.predicate.BooleanStaticPredicate;
+import top.openyuan.jpa.specification.predicate.AbstractSimplePredicateExt;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.From;
@@ -232,7 +232,7 @@ public abstract class AbstractPredicateHandler implements PredicateHandler {
         if (value instanceof Collection) {
             Collection<?> list = (Collection<?>) value;
             if (list.isEmpty()) {
-                return new BooleanStaticPredicate(
+                return new AbstractSimplePredicateExt(
                         (CriteriaBuilderImpl) criteriaBuilder, true, BooleanOperator.AND);
             } else {
                 list.forEach(in::value);

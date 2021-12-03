@@ -1,6 +1,6 @@
-package top.openyuan.jpa.util;
+package top.openyuan.jpa.common.util;
 
-import top.openyuan.jpa.constant.JpaConfigConstant;
+import top.openyuan.jpa.common.constant.JpaConfigConstant;
 
 import java.util.Collection;
 

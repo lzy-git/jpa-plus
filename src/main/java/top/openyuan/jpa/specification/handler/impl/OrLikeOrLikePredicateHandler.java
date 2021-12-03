@@ -30,14 +30,14 @@ public class OrLikeOrLikePredicateHandler extends AbstractPredicateHandler {
         value = value.getClass().isArray() ? Arrays.asList((Object[]) value) : value;
         if (!(value instanceof List)) {
             throw new BuildSpecificationException(
-                    "【Fenix 异常】对【" + name + "】使用【@OrLikeOrLike】时，属性类型不是数组或者 List 集合！");
+                    "【Jpa-plus 异常】对【" + name + "】使用【@OrLikeOrLike】时，属性类型不是数组或者 List 集合！");
         }
 
         String[] fields = ((OrLikeOrLike) annotation).fields();
         List<?> values = (List<?>) value;
         if (fields.length != values.size()) {
             throw new BuildSpecificationException(
-                    "【Fenix 异常】对【" + name + "】使用【@OrLikeOrLike】时，注解上【fields】长度和字段值的大小不同，fileds长为:【"
+                    "【Jpa-plus 异常】对【" + name + "】使用【@OrLikeOrLike】时，注解上【fields】长度和字段值的大小不同，fileds长为:【"
                             + fields.length + "】,字段值大小为:【" + values.size() + "】.");
         }
 

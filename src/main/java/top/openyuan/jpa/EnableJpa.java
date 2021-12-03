@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 import javax.persistence.EntityManagerFactory;
 
-import top.openyuan.jpa.repository.factory.JpaRepositoryFactoryBeanExt;
+import top.openyuan.jpa.repository.factory.JpaRepositoryExtFactoryBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
@@ -30,7 +30,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import(JpaRepositoriesRegistrarExt.class)
+@Import(JpaRepositoriesExtRegistrar.class)
 public @interface EnableJpa {
     /**
      * Alias for the {@link #basePackages()} attribute. Allows for more concise annotation declarations e.g.:
@@ -93,7 +93,7 @@ public @interface EnableJpa {
      *
      * @return
      */
-    Class<?> repositoryFactoryBeanClass() default JpaRepositoryFactoryBeanExt.class;
+    Class<?> repositoryFactoryBeanClass() default JpaRepositoryExtFactoryBean.class;
 
     /**
      * Configure the repository base class to be used to create repository proxies for this particular configuration.

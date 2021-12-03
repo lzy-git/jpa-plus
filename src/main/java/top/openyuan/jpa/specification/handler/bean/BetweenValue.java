@@ -7,7 +7,7 @@ import lombok.Getter;
 /**
  * 用于区间查询的开始值和结束值的实体类.
  *
- * @author blinkfox on 2020-01-28.
+ * @author lzy on 2020-01-28.
  * @since v1.0.0
  */
 @Getter

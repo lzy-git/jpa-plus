@@ -1,4 +1,4 @@
-package top.openyuan.jpa.util;
+package top.openyuan.jpa.common.util;
 
 
 import java.util.regex.Matcher;
@@ -55,7 +55,7 @@ public final class StringUtils {
      *
      * @param s 待替换的原字符串
      * @return 替换后的总字符串
-     * @author blinkfox on 2020-12-31.
+     * @author lzy on 2020-12-31.
      * @since v2.4.1
      */
     public static String replaceWhereAndOr(String s) {

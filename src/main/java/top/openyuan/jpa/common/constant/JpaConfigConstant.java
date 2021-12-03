@@ -1,4 +1,4 @@
-package top.openyuan.jpa.constant;
+package top.openyuan.jpa.common.constant;
 
 /**
  * 常量类.

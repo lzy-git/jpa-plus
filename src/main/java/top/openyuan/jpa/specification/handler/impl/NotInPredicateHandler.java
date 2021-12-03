@@ -3,7 +3,7 @@ package top.openyuan.jpa.specification.handler.impl;
 import top.openyuan.jpa.specification.annotation.NotIn;
 import top.openyuan.jpa.specification.handler.AbstractPredicateHandler;
 import org.hibernate.query.criteria.internal.CriteriaBuilderImpl;
-import top.openyuan.jpa.specification.predicate.BooleanStaticPredicate;
+import top.openyuan.jpa.specification.predicate.AbstractSimplePredicateExt;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.From;
@@ -40,7 +40,7 @@ public class NotInPredicateHandler extends AbstractPredicateHandler {
         if (value instanceof Collection) {
             Collection<?> list = (Collection<?>) value;
             if (list.isEmpty()) {
-                return new BooleanStaticPredicate(
+                return new AbstractSimplePredicateExt(
                         (CriteriaBuilderImpl) criteriaBuilder, true, Predicate.BooleanOperator.AND);
             } else {
                 list.forEach(in::value);

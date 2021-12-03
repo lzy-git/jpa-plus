@@ -1,7 +1,7 @@
 package top.openyuan.jpa.specification.handler.impl;
 
 import top.openyuan.jpa.exception.BuildSpecificationException;
-import top.openyuan.jpa.specification.FastSpecification;
+import top.openyuan.jpa.specification.SpecificationPlus;
 import top.openyuan.jpa.specification.handler.AbstractPredicateHandler;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -27,14 +27,14 @@ public class JoinPredicateHandler extends AbstractPredicateHandler {
     public <Z, X> Predicate buildPredicate(
             CriteriaBuilder criteriaBuilder, From<Z, X> from, String name, Object value, Annotation annotation) {
         if (!(annotation instanceof top.openyuan.jpa.specification.annotation.Join)) {
-            throw new BuildSpecificationException("【Fenix 异常】使用【@Join】构建表连接时,【" + getClass().getName()
+            throw new BuildSpecificationException("【Jpa-plus 异常】使用【@Join】构建表连接时,【" + getClass().getName()
                     + ".getAnnotation()】获取到的值【" + this.getAnnotation().getName() + "】与字段使用的注解值【"
                     + annotation.getClass().getName() + "】不同");
         }
 
         Join<X, ?> subJoin = from.join(name,
                 ((top.openyuan.jpa.specification.annotation.Join) annotation).joinType());
-        return criteriaBuilder.and(FastSpecification.beanParamToPredicate(subJoin, criteriaBuilder, value)
+        return criteriaBuilder.and(SpecificationPlus.beanParamToPredicate(subJoin, criteriaBuilder, value)
                 .toArray(new Predicate[0]));
     }
 
