@@ -31,7 +31,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Documented
 @Inherited
 @Import(JpaRepositoriesExtRegistrar.class)
-public @interface EnableJpa {
+public @interface EnableJpaPlus {
     /**
      * Alias for the {@link #basePackages()} attribute. Allows for more concise annotation declarations e.g.:
      * {@code @EnableJpaRepositories("org.my.pkg")} instead of {@code @EnableJpaRepositories(basePackages="org.my.pkg")}.

@@ -7,7 +7,7 @@ import org.springframework.data.repository.config.RepositoryConfigurationExtensi
 import java.lang.annotation.Annotation;
 
 /**
- * {@link EnableJpa} 启用的注册器.
+ * {@link EnableJpaPlus} 启用的注册器.
  *
  * @author lzy on 2021/09/22
  * @since v1.0.0
@@ -16,7 +16,7 @@ public class JpaRepositoriesExtRegistrar extends RepositoryBeanDefinitionRegistr
 
     @Override
     protected Class<? extends Annotation> getAnnotation() {
-        return EnableJpa.class;
+        return EnableJpaPlus.class;
     }
 
     @Override
