@@ -13,7 +13,7 @@ import java.util.Map;
  * @author lzy
  * @since v1.0.0
  */
-public class FastConfig {
+public class JpaPlusConfig {
     /**
      * 初始化默认的注解 {@code Class} 和对应处理器实例到 HashMap 集合中，key 是注解 {@code Class}，value 是注解对应的处理器实例.
      */
