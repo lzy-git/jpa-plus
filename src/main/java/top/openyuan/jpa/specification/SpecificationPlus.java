@@ -2,7 +2,7 @@ package top.openyuan.jpa.specification;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.domain.Specification;
-import top.openyuan.jpa.config.FastConfig;
+import top.openyuan.jpa.config.JpaPlusConfig;
 import top.openyuan.jpa.exception.BuildSpecificationException;
 import top.openyuan.jpa.specification.handler.AbstractPredicateHandler;
 import top.openyuan.jpa.specification.handler.bean.Pair;
@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 public final class SpecificationPlus {
 
     private static final Map<Class<?>, AbstractPredicateHandler> specificationHandlerMap =
-            FastConfig.getSpecificationHandlerMap();
+            JpaPlusConfig.getSpecificationHandlerMap();
 
     /**
      * 根据查询的实体 Bean 参数中的 Jpa-plus 相关的注解来构造 {@link Specification} 实例.
