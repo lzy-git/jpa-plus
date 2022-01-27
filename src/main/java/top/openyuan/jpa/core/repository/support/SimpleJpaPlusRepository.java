@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import top.openyuan.jpa.common.constant.JpaConfigConstant;
 import top.openyuan.jpa.common.util.StringUtils;
 import top.openyuan.jpa.core.repository.JpaPlusRepository;
+import top.openyuan.jpa.core.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.metamodel.SingularAttribute;

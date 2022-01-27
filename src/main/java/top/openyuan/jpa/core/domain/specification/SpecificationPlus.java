@@ -11,6 +11,7 @@ import top.openyuan.jpa.core.domain.specification.handler.bean.Pair;
 import top.openyuan.jpa.core.domain.specification.predicate.AbstractSimplePredicateExt;
 import top.openyuan.jpa.core.domain.specification.predicate.PredicatePlus;
 import top.openyuan.jpa.core.domain.specification.predicate.PredicatePlusBuilder;
+import top.openyuan.jpa.core.util.FieldUtils;
 import top.openyuan.jpa.exception.BuildSpecificationException;
 
 import javax.persistence.criteria.CriteriaBuilder;
