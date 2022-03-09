@@ -16,10 +16,10 @@
 package top.openyuan.jpa.core.exceptions;
 
 /**
- * MybatisPlus 异常类
+ * JpaPlus 异常类
  *
- * @author hubin
- * @since 2016-01-23
+ * @author lzy
+ * @since 2022-03-09
  */
 public class JpaPlusException extends RuntimeException {
 
