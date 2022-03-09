@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import top.openyuan.jpa.core.constant.JpaConfigConstant;
 import top.openyuan.jpa.core.repository.JpaPlusRepository;
-import top.openyuan.jpa.core.util.StringUtils;
+import top.openyuan.jpa.core.toolkit.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.metamodel.SingularAttribute;

@@ -3,6 +3,7 @@ package top.openyuan.jpa.core.incrementer;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentityGenerator;
 import top.openyuan.jpa.core.incrementer.handler.SnowflakeHandler;
+import top.openyuan.jpa.core.toolkit.sequence.Sequence;
 
 import java.io.Serializable;
 
@@ -14,7 +15,7 @@ import java.io.Serializable;
  */
 public class SnowflakeIdGenerator extends IdentityGenerator {
 
-    private final SnowflakeHandler snowflakeHandler = new SnowflakeHandler(1L);
+    private final Sequence snowflakeHandler = new Sequence();
 
     /**
      * 用于生成雪花算法 10 进制 {@code long} 型 ID 的生成方法.

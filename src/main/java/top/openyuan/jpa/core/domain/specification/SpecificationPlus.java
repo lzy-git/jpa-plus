@@ -9,9 +9,9 @@ import top.openyuan.jpa.core.domain.specification.predicate.PredicatePlus;
 import top.openyuan.jpa.core.domain.specification.predicate.PredicatePlusBuilder;
 import top.openyuan.jpa.core.domain.specification.predicate.handler.support.Pair;
 import top.openyuan.jpa.core.exceptions.JpaPlusException;
-import top.openyuan.jpa.core.util.CollectionUtils;
-import top.openyuan.jpa.core.util.FieldUtils;
-import top.openyuan.jpa.core.util.StringUtils;
+import top.openyuan.jpa.core.toolkit.CollectionUtils;
+import top.openyuan.jpa.core.toolkit.FieldUtils;
+import top.openyuan.jpa.core.toolkit.StringUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.From;

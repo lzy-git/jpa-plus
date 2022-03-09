@@ -1,6 +1,7 @@
-package top.openyuan.jpa.core.util;
+package top.openyuan.jpa.core.toolkit;
 
 import top.openyuan.jpa.core.constant.JpaConfigConstant;
+
 import java.util.Collection;
 
 /**
