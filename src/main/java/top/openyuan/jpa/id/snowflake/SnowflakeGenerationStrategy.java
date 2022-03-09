@@ -1,4 +1,4 @@
-package top.openyuan.jpa.id.handler;
+package top.openyuan.jpa.id.snowflake;
 
 import top.openyuan.jpa.common.util.SystemClockUtils;
 
@@ -11,7 +11,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author lzy
  * @since v1.0.0
  */
-public class SnowflakeHandler {
+public class SnowflakeGenerationStrategy {
+
+    private static volatile SnowflakeGenerationStrategy instance = null;
 
     /**
      * 起始时间戳
@@ -59,11 +61,25 @@ public class SnowflakeHandler {
     private final boolean randomSequence;
     private final ThreadLocalRandom tlr = ThreadLocalRandom.current();
 
-    public SnowflakeHandler(long dataCenterId) {
+    /**
+     * 采用单例模式初始化雪花帮助类，采用线程安全模式.
+     **/
+    public static SnowflakeGenerationStrategy getInstance(long dataCenterId){
+        if(instance == null){
+            synchronized(SnowflakeGenerationStrategy.class){
+                if(instance == null){
+                    instance = new SnowflakeGenerationStrategy(dataCenterId);
+                }
+            }
+        }
+        return instance;
+    }
+
+    public SnowflakeGenerationStrategy(long dataCenterId) {
         this(dataCenterId, 0x000000FF & getLastIPAddress(), false, 5L, false);
     }
 
-    public SnowflakeHandler(long dataCenterId, boolean clock, boolean randomSequence) {
+    public SnowflakeGenerationStrategy(long dataCenterId, boolean clock, boolean randomSequence) {
         this(dataCenterId, 0x000000FF & getLastIPAddress(), clock, 5L, randomSequence);
     }
 
@@ -76,7 +92,7 @@ public class SnowflakeHandler {
      * @param timeOffset     允许时间回拨的毫秒量,建议5ms
      * @param randomSequence true表示使用毫秒内的随机序列(超过范围则取余)
      */
-    public SnowflakeHandler(long dataCenterId, long workerId, boolean clock, long timeOffset, boolean randomSequence) {
+    public SnowflakeGenerationStrategy(long dataCenterId, long workerId, boolean clock, long timeOffset, boolean randomSequence) {
         if (dataCenterId > MAX_DATA_CENTER_ID || dataCenterId < 0) {
             throw new IllegalArgumentException("Data Center Id can't be greater than " +
                     MAX_DATA_CENTER_ID + " or less than 0");

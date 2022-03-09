@@ -1,10 +1,5 @@
 # 🔥 JPA-PLUS
-
-[![Build Status](https://secure.travis-ci.org/blinkfox/jpa-plus.svg)](https://travis-ci.org/blinkfox/jpa-plus) [![HitCount](http://hits.dwyl.io/blinkfox/jpa-plus.svg)](http://hits.dwyl.io/blinkfox/jpa-plus) [![Javadocs](http://www.javadoc.io/badge/com.blinkfox/jpa-plus.svg)](http://www.javadoc.io/doc/com.blinkfox/jpa-plus) [![GitHub license](https://img.shields.io/github/license/blinkfox/jpa-plus.svg)](https://github.com/blinkfox/jpa-plus/blob/develop/LICENSE) [![jpa-plus](https://img.shields.io/badge/jpa-plus-v2.4.2-blue)](https://search.maven.org/artifact/com.blinkfox/jpa-plus/2.4.2/jar) [![jpa-plus starter](https://img.shields.io/badge/jpa-plus%20spring%20boot%20starter-v2.4.2-blue)](https://search.maven.org/artifact/com.blinkfox/jpa-plus-spring-boot-starter/2.4.2/jar) [![codecov](https://codecov.io/gh/blinkfox/jpa-plus/branch/develop/graph/badge.svg)](https://codecov.io/gh/blinkfox/jpa-plus)
-[JPA-PLUS](https://github.com/blinkfox/jpa-plus)（菲尼克斯）是一个为了解决复杂动态 SQL (`JPQL`) 而生的 `Spring Data JPA` 扩展库，目的是辅助开发者更方便快捷的书写复杂、动态且易于维护的 SQL，支持 `XML`、Java 链式 `API` 和动态条件注解等四种方式来书写动态 SQL。
-
-[📖 使用文档](https://blinkfox.github.io/jpa-plus) | [🍉 示例项目 (jpa-plus-example)](https://github.com/blinkfox/jpa-plus-example)
-
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 ## 💎 一、特性
 
 - 简单、轻量级、无副作用的集成和使用，jar 包仅 `192 KB`；
@@ -33,25 +28,25 @@
 <dependency>
     <groupId>top.openyuan</groupId>
     <artifactId>jpa-plus</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.4</version>
 </dependency>
 ```
 
 ### 🌵 2. Gradle
 
 ```bash
-implementation 'top.openyuan:jpa-plus:1.0.1'
+implementation 'top.openyuan:jpa-plus:1.0.2'
 ```
 
-### 🏕️ 3. 激活 Jpa-plus (@EnableJpa-plus)
+### 🏕️ 3. 激活 Jpa-plus (@EnableJpaPlus)
 
-然后需要在你的 Spring Boot 应用中使用 `@EnableJpa-plus` 激活 Jpa-plus 的相关配置信息。
+然后需要在你的 Spring Boot 应用中使用 `@EnableJpaPlus` 激活 Jpa-plus 的相关配置信息。
 
 ```java
 /**
- * 请在 Spring Boot 应用中标注 {code @EnableJpa-plus} 注解.
+ * 请在 Spring Boot 应用中标注 {code @EnableJpaPlus} 注解.
  *
- * @author blinkfox on 2020-02-01.
+ * @author lzy on 2020-02-01.
  */
 @EnableJpaPlus
 @SpringBootApplication
@@ -91,102 +86,6 @@ Jpa-plus 中支持四种方式书写动态 SQL，分别是：
 
 以下的四种方式的示例均以博客信息数据作为示例，你可以根据自己的场景或喜欢的方式来选择动态查询的方式。关于详细的使用文档可以[参看文档](https://blinkfox.github.io/jpa-plus/#/)。
 
-### 1. 🍖 基于 JPQL (或 SQL) 的 XML 方式
-下面是 `queryMyBlogs` 接口方法的单元测试：
-
-```java
-/**
- * 测试使用 {@link QueryJpa-plus} 注解根据任意参数多条件模糊分页查询博客信息.
- */
-@Test
-public void queryMyBlogs() {
-    // 模拟构造查询的相关参数.
-    List<String> ids = Arrays.asList("1", "2", "3", "4", "5", "6");
-    Blog blog = new Blog().setAuthor("ZhangSan").setUpdateTime(new Date());
-    Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Order.desc("createTime")));
-
-    // 查询并断言查询结果的正确性.
-    Page<Blog> blogs = blogRepository.queryMyBlogs(ids, blog, pageable);
-    Assert.assertEquals(4, blogs.getTotalElements());
-    Assert.assertEquals(3, blogs.getContent().size());
-}
-```
-
-### 2. 🍟 基于 JPQL (或 SQL) 的 Java API 方式
-
-在 `BlogRepository` 中的查询方法使用 `QueryJpa-plus` 注解，用来查询所有符合条件的博客信息数据：
-
-```java
-public interface BlogRepository extends JpaRepository<Blog, String> {
-
-    /**
-     * 使用 {@link QueryJpa-plus} 注解和 Java API 来拼接 SQL 的方式来查询博客信息.
-     *
-     * @param blog 博客信息实体
-     * @param startTime 开始时间
-     * @param endTime 结束时间
-     * @param blogIds 博客 ID 集合
-     * @return 用户信息集合
-     */
-    @QueryJpa-plus(provider = BlogSqlProvider.class)
-    List<Blog> queryBlogsWithJava(@Param("blog") Blog blog, @Param("startTime") Date startTime,
-            @Param("endTime") Date endTime, @Param("blogIds") String[] blogIds);
-
-}
-```
-
-创建 `BlogSqlProvider` 类，定义一个与查询方法同名的方法 `queryBlogsWithJava` 方法，用来使用 Java 的方式来动态拼接 JPQL (或 SQL) 语句。
-
-```java
-public class BlogSqlProvider {
-
-    /**
-     * 通过 Java API 来拼接得到 {@link SqlInfo} 的方式来查询博客信息.
-     *
-     * @param blogIds 博客 ID 集合
-     * @param blog 博客信息实体
-     * @param startTime 开始时间
-     * @param endTime 结束时间
-     * @return {@link SqlInfo} 示例
-     */
-    public SqlInfo queryBlogsWithJava(@Param("blogIds") String[] blogIds, @Param("blog") Blog blog,
-            @Param("startTime") Date startTime, @Param("endTime") Date endTime) {
-        return Jpa-plus.start()
-                .select("b")
-                .from("Blog").as("b")
-                .where()
-                .in("b.id", blogIds, CollectionHelper.isNotEmpty(blogIds))
-                .andLike("b.title", blog.getTitle(), StringHelper.isNotBlank(blog.getTitle()))
-                .andLike("b.author", blog.getAuthor(), StringHelper.isNotBlank(blog.getAuthor()))
-                .andBetween("b.createTime", startTime, endTime, startTime != null || endTime != null)
-                .end();
-    }
-
-}
-```
-
-下面是 `queryBlogsWithJava` 接口方法的单元测试：
-
-```java
-/**
- * 测试使用 {@link QueryJpa-plus} 注解和 Java API 来拼接 SQL 的方式来查询博客信息.
- */
-@Test
-public void queryBlogsWithJava() {
-    // 构造查询的相关参数.
-    String[] ids = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
-    Blog blog = new Blog().setAuthor("ZhangSan");
-    Date startTime = Date.from(LocalDateTime.of(2019, Month.APRIL, 8, 0, 0, 0)
-            .atZone(ZoneId.systemDefault()).toInstant());
-    Date endTime = Date.from(LocalDateTime.of(2019, Month.OCTOBER, 8, 0, 0, 0)
-            .atZone(ZoneId.systemDefault()).toInstant());
-
-    // 查询并断言查询结果的正确性.
-    List<Blog> blogs = blogRepository.queryBlogsWithJava(blog, startTime, endTime, ids);
-    Assert.assertEquals(3, blogs.size());
-}
-```
-
 ### 3. 🍭 基于 Specification 的 Java API 方式
 
 基于 `Specification` 的方式，只须要 `BlogRepository` 接口继承 `Jpa-plusJpaSpecificationExecutor` 接口即可。
@@ -202,7 +101,7 @@ public interface BlogRepository extends JpaRepository<Blog, String>, JpaSpecific
 
 ```java
 /**
- * 测试使用 Jpa-plus 中的  {@link Jpa-plusSpecification} 的链式 Java API 来动态查询博客信息.
+ * 测试使用 Jpa-plus 中的  {@link JpaPlusSpecification} 的链式 Java API 来动态查询博客信息.
  */
 @Test
 public void queryBlogsWithSpecifition() {
@@ -309,3 +208,4 @@ public void queryBlogsWithAnnotaion() {
 本 `Jpa-plus` 的 Spring Data JPA 扩展库遵守 [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0) 许可证。
 
 ## 🙏 六、鸣谢
+感谢 [Fenix 项目](https://github.com/blinkfox/fenix)
