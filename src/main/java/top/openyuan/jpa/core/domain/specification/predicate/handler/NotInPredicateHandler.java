@@ -2,7 +2,7 @@ package top.openyuan.jpa.core.domain.specification.predicate.handler;
 
 import org.hibernate.query.criteria.internal.CriteriaBuilderImpl;
 import top.openyuan.jpa.core.domain.specification.annotation.NotIn;
-import top.openyuan.jpa.core.domain.specification.handler.AbstractPredicateHandler;
+import top.openyuan.jpa.core.domain.specification.predicate.AbstractPredicateHandler;
 import top.openyuan.jpa.core.domain.specification.predicate.AbstractSimplePredicateExt;
 
 import javax.persistence.criteria.CriteriaBuilder;

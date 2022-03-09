@@ -1,6 +1,6 @@
 package top.openyuan.jpa.core.incrementer.handler;
 
-import top.openyuan.jpa.common.util.SystemClockUtils;
+import top.openyuan.jpa.core.util.SystemClockUtils;
 
 import java.net.InetAddress;
 import java.util.concurrent.ThreadLocalRandom;

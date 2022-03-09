@@ -2,17 +2,16 @@ package top.openyuan.jpa.core.domain.specification;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.domain.Specification;
-import top.openyuan.jpa.common.util.CollectionUtils;
-import top.openyuan.jpa.common.util.FieldUtils;
-import top.openyuan.jpa.common.util.StringUtils;
-import top.openyuan.jpa.config.JpaPlusConfig;
-import top.openyuan.jpa.core.domain.specification.handler.AbstractPredicateHandler;
-import top.openyuan.jpa.core.domain.specification.handler.bean.Pair;
+import top.openyuan.jpa.core.config.JpaPlusConfig;
+import top.openyuan.jpa.core.domain.specification.predicate.AbstractPredicateHandler;
 import top.openyuan.jpa.core.domain.specification.predicate.AbstractSimplePredicateExt;
 import top.openyuan.jpa.core.domain.specification.predicate.PredicatePlus;
 import top.openyuan.jpa.core.domain.specification.predicate.PredicatePlusBuilder;
+import top.openyuan.jpa.core.domain.specification.predicate.handler.support.Pair;
+import top.openyuan.jpa.core.exceptions.JpaPlusException;
+import top.openyuan.jpa.core.util.CollectionUtils;
 import top.openyuan.jpa.core.util.FieldUtils;
-import top.openyuan.jpa.exception.BuildSpecificationException;
+import top.openyuan.jpa.core.util.StringUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.From;
@@ -171,10 +170,10 @@ public final class SpecificationPlus {
                     : buildDefaultPredicate(criteriaBuilder, field, root, handler,
                     pair.getLeft(), pair.getRight(), annotation);
         } catch (IllegalAccessException e) {
-            throw new BuildSpecificationException("【Jpa-plus 异常】与属性名相同名称的 match 匹配方法，不能访问，"
+            throw new JpaPlusException("【Jpa-plus 异常】与属性名相同名称的 match 匹配方法，不能访问，"
                     + "请设置方法的访问级别为【public】，方法返回值类型为【boolean】类型.");
         } catch (InvocationTargetException e) {
-            throw new BuildSpecificationException("【Jpa-plus 异常】与属性名相同名称的 match 匹配方法，调用出错，"
+            throw new JpaPlusException("【Jpa-plus 异常】与属性名相同名称的 match 匹配方法，调用出错，"
                     + "请设置方法的访问级别为【public】，方法返回值类型为【boolean】类型，并检查其他引起调用失败的原因.");
         }
 
@@ -210,7 +209,7 @@ public final class SpecificationPlus {
             fieldName = StringUtils.isBlank(fieldName) ? field.getName() : fieldName;
             return Pair.of(fieldName, descriptor.getReadMethod().invoke(beanParam));
         } catch (ReflectiveOperationException e) {
-            throw new BuildSpecificationException("【Jpa-plus 异常】构建【" + annotation.getClass().getName()
+            throw new JpaPlusException("【Jpa-plus 异常】构建【" + annotation.getClass().getName()
                     + "】注解的条件时，反射调用获取对应的属性字段值异常。", e);
         }
     }

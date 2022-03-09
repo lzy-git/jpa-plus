@@ -1,9 +1,6 @@
 package top.openyuan.jpa.core.domain.specification.predicate;
 
-import org.springframework.data.jpa.convert.QueryByExamplePredicateBuilder;
-import top.openyuan.jpa.core.domain.specification.handler.AbstractPredicateHandler;
-import top.openyuan.jpa.core.domain.specification.handler.PredicateHandler;
-import top.openyuan.jpa.core.domain.specification.handler.impl.*;
+import top.openyuan.jpa.core.domain.specification.predicate.handler.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

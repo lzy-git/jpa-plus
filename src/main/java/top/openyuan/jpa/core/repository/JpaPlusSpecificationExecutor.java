@@ -5,8 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import top.openyuan.jpa.specification.SpecificationPlus;
-import top.openyuan.jpa.specification.predicate.PredicatePlus;
+import top.openyuan.jpa.core.domain.specification.SpecificationPlus;
+import top.openyuan.jpa.core.domain.specification.predicate.PredicatePlus;
 
 import java.util.List;
 import java.util.Optional;

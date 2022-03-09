@@ -2,7 +2,7 @@ package top.openyuan.jpa.core.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import top.openyuan.jpa.common.constant.JpaConfigConstant;
+import top.openyuan.jpa.core.constant.JpaConfigConstant;
 
 /**
  * 用于增强 {@link JpaRepository} 接口功能的 {@link JpaPlusRepository} 接口.

@@ -1,9 +1,9 @@
 # 🔥 JPA-PLUS
 
-[![Build Status](https://secure.travis-ci.org/blinkfox/jpa-plus.svg)](https://travis-ci.org/blinkfox/jpa-plus) [![HitCount](http://hits.dwyl.io/blinkfox/jpa-plus.svg)](http://hits.dwyl.io/blinkfox/jpa-plus) [![Javadocs](http://www.javadoc.io/badge/com.blinkfox/jpa-plus.svg)](http://www.javadoc.io/doc/com.blinkfox/jpa-plus) [![GitHub license](https://img.shields.io/github/license/blinkfox/jpa-plus.svg)](https://github.com/blinkfox/jpa-plus/blob/develop/LICENSE) [![jpa-plus](https://img.shields.io/badge/jpa-plus-v2.4.2-blue)](https://search.maven.org/artifact/com.blinkfox/jpa-plus/2.4.2/jar) [![jpa-plus starter](https://img.shields.io/badge/jpa-plus%20spring%20boot%20starter-v2.4.2-blue)](https://search.maven.org/artifact/com.blinkfox/jpa-plus-spring-boot-starter/2.4.2/jar) [![codecov](https://codecov.io/gh/blinkfox/jpa-plus/branch/develop/graph/badge.svg)](https://codecov.io/gh/blinkfox/jpa-plus)
-[JPA-PLUS](https://github.com/blinkfox/jpa-plus)（菲尼克斯）是一个为了解决复杂动态 SQL (`JPQL`) 而生的 `Spring Data JPA` 扩展库，目的是辅助开发者更方便快捷的书写复杂、动态且易于维护的 SQL，支持 `XML`、Java 链式 `API` 和动态条件注解等四种方式来书写动态 SQL。
+[![Build Status](https://secure.travis-ci.org/lzy-git/jpa-plus.svg)](https://travis-ci.org/blinkfox/jpa-plus) [![HitCount](http://hits.dwyl.io/blinkfox/jpa-plus.svg)](http://hits.dwyl.io/blinkfox/jpa-plus) [![Javadocs](http://www.javadoc.io/badge/com.blinkfox/jpa-plus.svg)](http://www.javadoc.io/doc/com.blinkfox/jpa-plus) [![GitHub license](https://img.shields.io/github/license/blinkfox/jpa-plus.svg)](https://github.com/blinkfox/jpa-plus/blob/develop/LICENSE) [![jpa-plus](https://img.shields.io/badge/jpa-plus-v2.4.2-blue)](https://search.maven.org/artifact/com.blinkfox/jpa-plus/2.4.2/jar) [![jpa-plus starter](https://img.shields.io/badge/jpa-plus%20spring%20boot%20starter-v2.4.2-blue)](https://search.maven.org/artifact/com.blinkfox/jpa-plus-spring-boot-starter/2.4.2/jar) [![codecov](https://codecov.io/gh/blinkfox/jpa-plus/branch/develop/graph/badge.svg)](https://codecov.io/gh/blinkfox/jpa-plus)
+[JPA-PLUS](https://github.com/lzy-git/jpa-plus)是一个为了解决复杂动态 SQL (`JPQL`) 而生的 `Spring Data JPA` 扩展库，目的是辅助开发者更方便快捷的书写复杂、动态且易于维护的 SQL，支持 `XML`、Java 链式 `API` 和动态条件注解等四种方式来书写动态 SQL。
 
-[📖 使用文档](https://blinkfox.github.io/jpa-plus) | [🍉 示例项目 (jpa-plus-example)](https://github.com/blinkfox/jpa-plus-example)
+[📖 使用文档](https://lzy-git.github.io/jpa-plus) | [🍉 示例项目 (jpa-plus-example)](https://github.com/blinkfox/jpa-plus-example)
 
 ## 💎 一、特性
 
@@ -33,7 +33,7 @@
 <dependency>
     <groupId>top.openyuan</groupId>
     <artifactId>jpa-plus</artifactId>
-    <version>1.0.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

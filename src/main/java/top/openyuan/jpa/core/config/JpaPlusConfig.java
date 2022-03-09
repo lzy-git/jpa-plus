@@ -1,8 +1,8 @@
 package top.openyuan.jpa.core.config;
 
 import lombok.Getter;
-import top.openyuan.jpa.specification.handler.AbstractPredicateHandler;
-import top.openyuan.jpa.specification.handler.impl.*;
+import top.openyuan.jpa.core.domain.specification.predicate.AbstractPredicateHandler;
+import top.openyuan.jpa.core.domain.specification.predicate.handler.*;
 
 import java.util.HashMap;
 import java.util.Map;

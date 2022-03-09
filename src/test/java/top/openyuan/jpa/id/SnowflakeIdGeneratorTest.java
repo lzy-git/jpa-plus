@@ -1,6 +1,7 @@
 package top.openyuan.jpa.id;
 
 import org.junit.Test;
+import top.openyuan.jpa.core.incrementer.SnowflakeIdGenerator;
 
 /**
  * {@link SnowflakeIdGenerator} 的单元测试类.

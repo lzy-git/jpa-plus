@@ -10,8 +10,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import top.openyuan.jpa.common.constant.JpaConfigConstant;
-import top.openyuan.jpa.common.util.StringUtils;
+import top.openyuan.jpa.core.constant.JpaConfigConstant;
 import top.openyuan.jpa.core.repository.JpaPlusRepository;
 import top.openyuan.jpa.core.util.StringUtils;
 
